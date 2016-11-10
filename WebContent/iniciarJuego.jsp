@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page language="java" %>
-<%@ page import = "database.*"%> 
-<%@ page import = "java.sql.ResultSet"%> 
+<%@ page import = "database.*"%>
+<%@ page import = "java.sql.*"%> 
 <%@ page import = "java.util.*"%> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -53,8 +53,7 @@
                   <th>Pts. Totales</th>
                 </tr>
               </thead>
-				 <tbody>
-                <tr>
+			<tbody>
 					<%
 						DataPersonaje dbPersonaje = new DataPersonaje();
 						
@@ -62,16 +61,15 @@
 						
 						while(rs.next()){
 						   out.println("<tr>");
-						   out.println("<td>"+rs.getInt("idPersonaje")+"</td>");
-						   out.println("<td>"+rs.getString("nombre")+"</td>");
-						   out.println("<td>"+rs.getInt("vida")+"</td>");
-						   out.println("<td>"+rs.getInt("defensa")+"</td>");
-						   out.println("<td>"+rs.getInt("energia")+"</td>");
-						   out.println("<td>"+rs.getInt("evasion")+"</td>");
-						   out.println("<td>"+rs.getInt("puntosTotales")+"</td>");
+							   out.println("<td>"+rs.getInt("idPersonaje")+"</td>");
+							   out.println("<td>"+rs.getString("nombre")+"</td>");
+							   out.println("<td>"+rs.getInt("vida")+"</td>");
+							   out.println("<td>"+rs.getInt("defensa")+"</td>");
+							   out.println("<td>"+rs.getInt("energia")+"</td>");
+							   out.println("<td>"+rs.getInt("evasion")+"</td>");
+							   out.println("<td>"+rs.getInt("puntosTotales")+"</td>");
 						   out.println("</tr>");
 						}
-						
 					%>
 					</tbody>
             </table>
@@ -81,11 +79,25 @@
       <div class="container">
 
 	      <form class="form-signin" name="signin" action="Start" method="post">
-	        <h3 class="form-signin-heading">Seleccionar su personaje</h3>
-	        <label for="inputPersonaje1" class="sr-only">Personaje 1</label>
-	        <input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="Personaje 1" required="" autofocus="" type="">
-	        <label for="inputPersonaje2" class="sr-only">Personaje 2</label>
-	        <input name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="Personaje 2" required="" type="">
+	       	<div class = "col-lg-6">
+		       	<h3 class="form-signin-heading">Seleccionar su personaje</h3>
+		        <label for="inputPersonaje1" class="sr-only">Personaje 1</label>
+		        <input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="ID Personaje 1" required="" type="">
+		        <label for="inputPersonaje2" class="sr-only">Personaje 2</label>
+		        <input name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="ID Personaje 2" required="" type="">
+		     </div> 
+		     
+		     <div class = "col-lg-6">
+		       <center>	<h4>Sorteo</h4>
+		       	<p>Ingrese un número del 1 al 5</p></center>
+		        <label for="inputPersonaje1" class="sr-only">Jugador 1</label>
+		        <input name="op1" id="inputOp1" class="form-control" placeholder="Jugador 1" required="" type="">
+		        <label for="inputOp2" class="sr-only">Jugador 2</label>
+		        <input name="op2" id="inputPersonaje2" class="form-control" placeholder="Jugador 2" required="" type="">
+		     </div> 
+		       
+	        
+	        
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Jugar</button>
 	      </form>
 
