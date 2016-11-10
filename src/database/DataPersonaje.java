@@ -92,7 +92,7 @@ public class DataPersonaje {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT idPersonaje, nombre, puntosTotales FROM personajes;");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT idPersonaje, nombre, defensa, vida, energia, evasion, puntosTotales FROM personajes;");
 			rs = stmt.executeQuery();
 		
 		} catch (SQLException e) {
