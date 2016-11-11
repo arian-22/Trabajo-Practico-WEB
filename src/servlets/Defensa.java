@@ -1,25 +1,26 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import juego.*;
-import entidades.*;
 
 /**
- * Servlet implementation class Start
+ * Servlet implementation class Jugar
  */
-@WebServlet("/Start")
-public class Start extends HttpServlet {
+@WebServlet("/Defensa")
+public class Defensa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Start() {
+    public Defensa() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +30,6 @@ public class Start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -39,28 +39,15 @@ public class Start extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		ControladorJuego ctrl = new ControladorJuego();
+		ControladorJuego ctrl = (ControladorJuego) request.getSession().getAttribute("Ctrl");
+		Partida partida = (Partida) request.getSession().getAttribute("Partida");
 		
-		Personaje p1= new Personaje();
-		p1 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje1")));
-		Personaje p2= new Personaje();
-		p2 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje2")));
+		partida.defender();
 		
-		ctrl.setJugador1(p1);
-		ctrl.setJugador2(p2);
-		
-		ctrl.iniciarPartida();
-
-		ctrl.sorteo(Integer.parseInt(request.getParameter("op1")),Integer.parseInt(request.getParameter("op2")));
-		
-		Partida partida = ctrl.getPartida();
-		
-		request.getSession().setAttribute("P1", p1);
-		request.getSession().setAttribute("P2", p2);
-		request.getSession().setAttribute("Ctrl", ctrl);
-		request.getSession().setAttribute("Partida", partida);
+		ctrl.cambiarTurno();
 		
 		request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		
 		
 		
 	}
