@@ -29,7 +29,7 @@
 	    <script src="js/ie-emulation-modes-warning.js"></script>
 	</head>
 	
-	<body >
+	<body class="fondo">
 				
 		<center><h1> Turn Based Combat!</h1></center>
 		
@@ -40,39 +40,72 @@
 			ControladorJuego ctrl = ((ControladorJuego)session.getAttribute("Ctrl"));
 		%>
 		
-		<%= p1.getNombre() %>
-		<br>
-		<%= p2.getNombre() %>
 		
-				
 		
-		<p><br>Comienza Jugador: <%= ctrl.getPartida().getTurno().getNombre()  %></p>
+		<div class="alert alert-dismissable alert-danger alerta">
+				<p><br><strong>Turno jugador: <%= ctrl.getPartida().getTurno().getNombre()  %></strong></p> 	
+			</div>
 		
 		
     	<div class="container">
 	    	<div class="row marketing">
 		        <div class="col-xs-6 divide">
-		          <h4><%= p1.getNombre() %></h4>
+		         <strong><h4><%= p1.getNombre() %></h4></strong> 
+		          <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
+		          
 		          <div class="col-xs-6">
 		          	<p>Vida: <%= p1.getVidaActual() %></p>
 		          </div>
 		          <div class="col-xs-6">
 		          	<p>Energía: <%= p1.getEnergiaActual() %></p>
 		          </div>
+		          
+		          <div class="row">
+					<div class="col-md-6">
+						 
+						<button type="button" class="btn btn-default btn-block">
+							Atacar
+						</button>
+					</div>
+					<div class="col-md-6">
+					 
+						<button type="button" class="btn btn-block btn-default">
+							Defender
+						</button>
+					</div>
+				  </div>
+		          
 		        </div>
 	
 		        <div class="col-xs-6 divide">
-		          <h4><%= p2.getNombre() %></h4>
+		          <strong><h4><%= p2.getNombre() %></h4></strong>
+		          <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
+		          
 		          <div class="col-xs-6">
 		          	<p>Vida: <%= p2.getVidaActual() %></p>
 		          </div>
 		          <div class="col-xs-6">
 		          	<p>Energía: <%= p2.getEnergiaActual() %></p>
 		          </div>
+				  
+				  <div class="row">
+					<div class="col-md-6">
+						 
+						<button type="button" class="btn btn-default btn-block">
+							Atacar
+						</button>
+					</div>
+					<div class="col-md-6">
+					 
+						<button type="button" class="btn btn-block btn-default">
+							Defender
+						</button>
+					</div>
+				  </div>
 		        </div>
-	      </div>
-	     </div>
-		
+			</div>
+				
+		        
 
 		
 	</body>

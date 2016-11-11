@@ -3,6 +3,16 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.fondo{
+	background-color: #ddd;
+}
+.alerta{
+	width: 30%;
+	text-align: center;
+	position: relative;
+	padding-top: 0px;
+	margin-left: 35%;
+}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
