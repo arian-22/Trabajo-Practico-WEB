@@ -49,17 +49,15 @@ doGet(request, response);
 		
 		try {
 			partida.atacar(puntosAtaque);
+			
+			ctrl.cambiarTurno();		
 		} catch (ApplicationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if(ctrl.getJugador1().getVidaActual() <= 0){
-			//finJuego();					
-		}else{
-			//Despues de realizar todo, cambiar de panel
-			ctrl.cambiarTurno();
-}
+		request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		
 	}
 
 }

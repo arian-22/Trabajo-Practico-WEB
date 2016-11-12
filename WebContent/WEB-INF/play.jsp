@@ -46,82 +46,79 @@
 		
 		<div class="alert alert-dismissable alert-danger alerta">
 				<p><br><strong>Turno jugador: <%= ctrl.getPartida().getTurno().getNombre()  %></strong></p> 	
-			</div>
+		</div>
 		
-		
-    	  	<div class="row marketing">
-	    		
-	    		<!-- Columna Jugador 1 -->
-	    		<div class="col-xs-6 divide">
-		         	<strong><h4><%= p1.getNombre() %></h4></strong> 
-		          	<img alt="Imagen Jugador 1" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
-		          
-		          	<div class="col-xs-6">
-		          		<p><strong>Vida:</strong> <%= p1.getVidaActual() %></p>
-		          	</div>
-		          	
-		          	<div class="col-xs-6">
-			          		<p><strong>Energía:</strong> <%= p1.getEnergiaActual() %></p>
-			         </div>
-	
-		          		<div class="row">
-							<div class="col-md-6">
-								<form name="ataque" action="Atacar" method="post">
-					          		<label for="text" class="sr-only">Pts. Ataque</label>
-			        		  		<input name="PtsAtaquePersonaje1" type="text" id="inputPtsAtaquePersonaje1" class="form-control" placeholder="Pts. Ataque" required autofocus>
-					          		<button type="button" class="btn btn-default btn-block">Atacar</button>
-					          	</form>
-							</div>
-						</div>
-				  				
-					<div class="col-md-6">
-					 <form class="form-signin" name="defensa" action="Defensa" method="post">
-						<button type="submit" class="btn btn-block btn-default">
-							Defender
-						</button>
-					  </form>
-					</div>
-				  </div>
-		          
-		        </div>
-	
-				<!-- Columna Jugador 2 -->
-		        <div class="col-xs-6 divide">
-		          <strong><h4><%= p2.getNombre() %></h4></strong>
-		          <img alt="Imagen Jugador 2" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
-		          
-		          <div class="col-xs-6">
-		          	<p><strong>Vida:</strong> <%= p2.getVidaActual() %></p>
-		          </div>
-		          <div class="col-xs-6">
-		          	<p><strong>Energía:</strong> <%= p2.getEnergiaActual() %></p>
-		          </div>
-				  
-				  <label for="text" class="sr-only">Pts. Ataque</label>
-        		  <input name="PtsAtaquePersonaje2" type="text" id="inputPtsAtaquePersonaje2" class="form-control" placeholder="Pts. Ataque" required autofocus>
-				  
-				  <div class="row">
-					<div class="col-md-6">
-						 
-						<button type="button" class="btn btn-default btn-block">
-							Atacar
-						</button>
-					</div>
-					<div class="col-md-6">
-					   <form class="form-signin" name="signin" action="Defensa" method="post">
-						<button type="submit" class="btn btn-block btn-default">
-							Defender
-						</button>
-					  </form>
-					</div>
-				  </div>
-		        </div>
-				
+
+		<div class="row marketing">
+			<!-- Columna Jugador 1 -->
+	    	<div class="col-xs-6 divide">
+	    		<strong><h4><%= p1.getNombre() %></h4></strong> 
+		        <img alt="Imagen Jugador 1" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
 		        
-			<%
-								  
-				//response.setHeader("Refresh", "0; URL= /Trabajo-Practico-WEB/Start" /*request.getContextPath()+ "/test.do?methodname=test&param=test"*/);
-			%>
+		        <div class="row">
+			        <div class="col-xs-6">
+			        	<p><strong>Vida:</strong> <%= p1.getVidaActual() %></p>
+			        </div>
+			        <div class="col-xs-6">
+			        	<p><strong>Energía:</strong> <%= p1.getEnergiaActual() %></p>
+			        </div>
+		        </div>
+		        
+		        <div class="row">
+		        	<div class="col-md-6">
+		        		<form class="form-signin" name="ataque" action="Atacar" method="post">
+		        			<label for="text" class="sr-only">Pts. Ataque</label>
+			        		<input name="PtsAtaquePersonaje1" type="text" id="inputPtsAtaquePersonaje1" class="form-control" placeholder="Pts. Ataque" required autofocus>
+					        <button type="submit" class="btn btn-default btn-block">Atacar</button>
+		        		</form>
+		        	</div>
+		        	
+		        	<div class="col-md-6">
+		        		 <form class="form-signin" name="defensa" action="Defensa" method="post">
+		        		 	<button type="submit" class="btn btn-block btn-default">Defender</button>
+		        		 </form>
+		        	</div>
+		        </div>
+		        
+		        
+	    	</div>
+	    	
+	    	
+	    	<!-- Columna Jugador 2 -->
+	    	<div class="col-xs-6 divide">
+	    		 <strong><h4><%= p2.getNombre() %></h4></strong>
+		         <img alt="Imagen Jugador 2" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
+		         
+		         <div class="row">
+			        <div class="col-xs-6">
+			        	<p><strong>Vida:</strong> <%= p2.getVidaActual() %></p>
+			        </div>
+			        <div class="col-xs-6">
+			        	<p><strong>Energía:</strong> <%= p2.getEnergiaActual() %></p>
+			        </div>
+		        </div>
+		        
+		        <div class="row">
+		        	<div class="col-md-6">
+		        		<form class="form-signin" name="ataque" action="Atacar" method="post">
+		        			<label for="text" class="sr-only">Pts. Ataque</label>
+			        		<input name="PtsAtaquePersonaje1" type="text" id="inputPtsAtaquePersonaje1" class="form-control" placeholder="Pts. Ataque" required autofocus>
+					        <button type="submit" class="btn btn-default btn-block">Atacar</button>
+		        		</form>
+		        	</div>
+		        	
+		        	<div class="col-md-6">
+		        		 <form class="form-signin" name="defensa" action="Defensa" method="post">
+		        		 	<button type="submit" class="btn btn-block btn-default">Defender</button>
+		        		 </form>
+		        	</div>
+		        </div>
+		        
+		         
+	    	</div>
+	    		
+		</div>
+				
 		
 	</body>
 </html>
