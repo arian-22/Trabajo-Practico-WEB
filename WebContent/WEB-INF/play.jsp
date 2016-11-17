@@ -53,7 +53,7 @@
 			<!-- Columna Jugador 1 -->
 	    	<div class="col-xs-6 divide">
 	    		<strong><h4><%= p1.getNombre() %></h4></strong> 
-		        <img alt="Imagen Jugador 1" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
+		        <img alt="Imagen Jugador 1" src="img/mago.png" class="img-thumbnail" /><br><br>
 		        
 		        <div class="row">
 			        <div class="col-xs-6">
@@ -87,7 +87,7 @@
 	    	<!-- Columna Jugador 2 -->
 	    	<div class="col-xs-6 divide">
 	    		 <strong><h4><%= p2.getNombre() %></h4></strong>
-		         <img alt="Imagen Jugador 2" src="http://lorempixel.com/140/140/" class="img-thumbnail" /><br><br>
+		         <img alt="Imagen Jugador 2" src="img/arquera.png" class="img-thumbnail" /><br><br>
 		         
 		         <div class="row">
 			        <div class="col-xs-6">

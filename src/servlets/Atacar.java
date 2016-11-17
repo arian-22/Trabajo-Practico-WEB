@@ -1,13 +1,13 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import util.ApplicationException;
 import juego.ControladorJuego;
 import juego.Partida;
@@ -40,7 +40,7 @@ public class Atacar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-doGet(request, response);
+		doGet(request, response);
 		
 		ControladorJuego ctrl = (ControladorJuego) request.getSession().getAttribute("Ctrl");
 		Partida partida = (Partida) request.getSession().getAttribute("Partida");
@@ -50,13 +50,36 @@ doGet(request, response);
 		try {
 			partida.atacar(puntosAtaque);
 			
-			ctrl.cambiarTurno();		
-		} catch (ApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ctrl.cambiarTurno();	
+			
+			if(ctrl.getPartida().getTurno().getVidaActual() <= 0){
+				partida.finJuego();	
+				request.getRequestDispatcher("index.html").forward(request, response);
+			}else{
+				request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+			}
+				
+		}catch(NumberFormatException ne){
+			String str = "Por favor ingrese un número";
+			
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('"+str+"');");
+			out.println("</script>");
+			
+		}catch (ApplicationException e1) {
+			String str = e1.errorPuntosDeAtaque();
+			
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('"+str+"');");
+			out.println("</script>");
+
 		}
 		
-		request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		
 		
 	}
 
