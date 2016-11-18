@@ -14,11 +14,6 @@ public class ApplicationException extends Exception{
 	}
 	
 
-	public String fueraDeRango() {
-		return "Los valores no deben repetirse y deben estar entre 1 y 5";
-		
-	}
-
 
 	public void errorDePuntajes() {
 		// TODO Auto-generated method stub

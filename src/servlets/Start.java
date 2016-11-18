@@ -8,6 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
+
+
+import com.mysql.fabric.xmlrpc.base.Data;
+
+import database.DataPersonaje;
 import juego.*;
 import util.ApplicationException;
 import entidades.*;
@@ -18,6 +25,8 @@ import entidades.*;
 @WebServlet("/Start")
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Boolean per1;
+	Boolean per2;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,56 +53,47 @@ public class Start extends HttpServlet {
 		
 		ControladorJuego ctrl = new ControladorJuego();
 		
+		DataPersonaje dp = new DataPersonaje();
+		
+		
+		
 		Personaje p1= new Personaje();
 		p1 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje1")));
 		Personaje p2= new Personaje();
 		p2 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje2")));
+				
 		
 		ctrl.setJugador1(p1);
 		ctrl.setJugador2(p2);
 		
-		ctrl.iniciarPartida();
-
-		try{
-			int op1 = Integer.parseInt(request.getParameter("op1"));
-			int op2 = Integer.parseInt(request.getParameter("op2"));
-			
-			if((op1>0 && op1<6) && (op2>0 && op2<6)){
-				if(op1!=op2){
-					ctrl.sorteo(op1,op2);
-					
-					Partida partida = ctrl.getPartida();
-					
-					request.getSession().setAttribute("P1", p1);
-					request.getSession().setAttribute("P2", p2);
-					request.getSession().setAttribute("Ctrl", ctrl);
-					request.getSession().setAttribute("Partida", partida);
-					
-					request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
-					
-				}else{
-					throw(new ApplicationException());
-				}
-			}else{
-				throw(new ApplicationException());
-			}
-		}catch(ApplicationException e){
-			String str = e.fueraDeRango();
-			
-			PrintWriter out = response.getWriter();
-			response.setContentType("text/html");
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('"+str+"');");
-			out.println("</script>");
-			
-			
-			response.sendRedirect("iniciarJuego.jsp");
-			
-			
-		}
+		int op1 = Integer.parseInt(request.getParameter("op1"));
+		int op2 = Integer.parseInt(request.getParameter("op2"));
 		
+		if((p1.getIdPersonaje() != p2.getIdPersonaje()) && (op1 != op2) ){
+			
+			ctrl.iniciarPartida();
+			
+			ctrl.sorteo(op1,op2);
 		
+			Partida partida = ctrl.getPartida();
+			
+			request.getSession().setAttribute("P1", p1);
+			request.getSession().setAttribute("P2", p2);
+			request.getSession().setAttribute("Ctrl", ctrl);
+			request.getSession().setAttribute("Partida", partida);
+			
+			request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		}else{
+			String str= "No elija el mismo personaje ni el mismo nùmero de sorteo";
+			request.setAttribute("error2", str);
+			request.getRequestDispatcher("iniciarJuego.jsp").forward(request, response);
+		
+		}			
 		
 	}
-
+		
+	
+		
 }
+
+

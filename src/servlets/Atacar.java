@@ -18,6 +18,8 @@ import juego.Partida;
 @WebServlet("/Atacar")
 public class Atacar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private int puntosAtaque;
+	private int id;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -45,39 +47,50 @@ public class Atacar extends HttpServlet {
 		ControladorJuego ctrl = (ControladorJuego) request.getSession().getAttribute("Ctrl");
 		Partida partida = (Partida) request.getSession().getAttribute("Partida");
 		
-		int puntosAtaque = Integer.parseInt(request.getParameter("PtsAtaquePersonaje1"));
-		
-		try {
-			partida.atacar(puntosAtaque);
-			
-			ctrl.cambiarTurno();	
-			
-			if(ctrl.getPartida().getTurno().getVidaActual() <= 0){
-				partida.finJuego();	
-				request.getRequestDispatcher("index.html").forward(request, response);
-			}else{
-				request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		if( request.getParameter("PtsAtaquePersonaje1")!= null){
+			puntosAtaque = Integer.parseInt(request.getParameter("PtsAtaquePersonaje1"));
+			id = ctrl.getJugador1().getIdPersonaje();
+		}else{
+			if( request.getParameter("PtsAtaquePersonaje2")!= null){
+				puntosAtaque = Integer.parseInt(request.getParameter("PtsAtaquePersonaje2"));
+				id = ctrl.getJugador2().getIdPersonaje();
 			}
-				
-		}catch(NumberFormatException ne){
-			String str = "Por favor ingrese un número";
-			
-			PrintWriter out = response.getWriter();
-			response.setContentType("text/html");
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('"+str+"');");
-			out.println("</script>");
-			
-		}catch (ApplicationException e1) {
-			String str = e1.errorPuntosDeAtaque();
-			
-			PrintWriter out = response.getWriter();
-			response.setContentType("text/html");
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('"+str+"');");
-			out.println("</script>");
-
 		}
+		
+		if(partida.getTurno().getIdPersonaje() == id){
+			try {
+				partida.atacar(puntosAtaque);
+				
+				ctrl.cambiarTurno();	
+				
+				String str = partida.getTurno().getEstadoAtaque();
+				request.setAttribute("evasion", str);
+				
+				if(ctrl.getPartida().getTurno().getVidaActual() <= 0){
+					partida.finJuego();	
+					String str2 = partida.getTurno().getNombre();
+					request.setAttribute("ganador", str2);
+					request.getRequestDispatcher("iniciarJuego.jsp").forward(request, response);
+				}else{
+					request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+				}
+						
+				
+			}catch (ApplicationException e1) {
+				String str = e1.errorPuntosDeAtaque();
+				
+				request.setAttribute("error", str);
+				request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+
+
+			}
+		}else{
+			String str = "Turno del jugador "+partida.getTurno().getNombre();
+			
+			request.setAttribute("error3", str);
+			request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		}
+		
 		
 		
 		

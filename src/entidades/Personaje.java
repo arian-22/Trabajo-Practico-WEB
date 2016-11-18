@@ -19,6 +19,7 @@ public class Personaje {
 	
 	private int vidaActual;
 	private int energiaActual;
+	private String estadoAtaque;
 	
 	
 	
@@ -142,9 +143,9 @@ public class Personaje {
 		int numAleatorio = rand.nextInt(100)+1; 
 		
 		if((numAleatorio)>evasion){
-			JOptionPane.showMessageDialog(null, "EVADIDO! Great!", "Turn Based Combat", JOptionPane.INFORMATION_MESSAGE);
+			estadoAtaque = "Evadido";
 		}else{
-			JOptionPane.showMessageDialog(null, "NO EVADIDO!", "Turn Based Combat", JOptionPane.INFORMATION_MESSAGE);
+			estadoAtaque = "No evadido";
 			
 			vidaActual = vidaActual - pts;
 			
@@ -177,6 +178,14 @@ public class Personaje {
 		
 		puntosTotales += 10;
 		
+	}
+
+	public String getEstadoAtaque() {
+		return estadoAtaque;
+	}
+
+	public void setEstadoAtaque(String estadoAtaque) {
+		this.estadoAtaque = estadoAtaque;
 	}
 
 }

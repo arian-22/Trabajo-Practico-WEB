@@ -39,6 +39,18 @@
 	</head>
 	
 	<body>
+	
+		  <% if (request.getAttribute("ganador")!=null && !((String)request.getAttribute("ganador")).isEmpty()){ %>
+			<div class="alert alert-dismissable alert-danger alerta" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    			<span aria-hidden="true">&times;</span>
+	  			</button>
+	  
+				<p><br><strong>Resultado Final: <%=request.getAttribute("ganador") %></strong></p>
+					
+			</div>
+		<%} %> 
+		
 		<h3 class="sub-header">Personajes Disponibles:</h3>
 		 <div class="table-responsive">
             <table class="table table-striped">
@@ -58,7 +70,6 @@
 						DataPersonaje dbPersonaje = new DataPersonaje();
 						
 						ResultSet rs = dbPersonaje.gridPersonajes(); 
-						
 						while(rs.next()){
 						   out.println("<tr>");
 							   out.println("<td>"+rs.getInt("idPersonaje")+"</td>");
@@ -69,31 +80,34 @@
 							   out.println("<td>"+rs.getInt("evasion")+"</td>");
 							   out.println("<td>"+rs.getInt("puntosTotales")+"</td>");
 						   out.println("</tr>");
+						   
+						   
 						}
 					%>
 					</tbody>
             </table>
           </div>
           
-          
+    
+		
       <div class="container">
 
 	      <form class="form-signin" name="signin" action="Start" method="post">
 	       	<div class = "col-lg-6">
 		       	<h3 class="form-signin-heading">Seleccionar su personaje</h3>
 		        <label for="inputPersonaje1" class="sr-only">Personaje 1</label>
-		        <input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="ID Personaje 1" required="" type="">
+		        <input type="number" name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="ID Personaje 1" required="" type="">
 		        <label for="inputPersonaje2" class="sr-only">Personaje 2</label>
-		        <input name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="ID Personaje 2" required="" type="">
+		        <input type="number" name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="ID Personaje 2" required="" type="">
 		     </div> 
 		     
 		     <div class = "col-lg-6">
 		       <center>	<h4>Sorteo</h4>
 		       	<p>Ingrese un número del 1 al 5</p></center>
 		        <label for="inputPersonaje1" class="sr-only">Jugador 1</label>
-		        <input name="op1" id="inputOp1" class="form-control" placeholder="Jugador 1" required="" type="">
+		        <input type="text" pattern="[1-5]" name="op1" id="inputOp1" class="form-control" placeholder="Jugador 1" required="" type="">
 		        <label for="inputOp2" class="sr-only">Jugador 2</label>
-		        <input name="op2" id="inputPersonaje2" class="form-control" placeholder="Jugador 2" required="" type="">
+		        <input type="text" pattern="[1-5]" name="op2" id="inputPersonaje2" class="form-control" placeholder="Jugador 2" required="" type="">
 		     </div> 
 		       
 	        
@@ -102,6 +116,17 @@
 	      </form>
 
     </div> <!-- /container -->
+    
+    <% if (request.getAttribute("error2")!=null && !((String)request.getAttribute("error2")).isEmpty()){ %>
+		<div class="alert alert-dismissable alert-danger alerta" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+  
+			<p><br><strong>Error: <%=request.getAttribute("error2") %></strong></p>
+				
+		</div>
+	<%} %> 
 	
 	<!-- Bootstrap core JavaScript
     ================================================== -->

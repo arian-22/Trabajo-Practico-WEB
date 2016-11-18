@@ -44,11 +44,47 @@
 		
 		
 		
-		<div class="alert alert-dismissable alert-danger alerta">
-				<p><br><strong>Turno jugador: <%= ctrl.getPartida().getTurno().getNombre()  %></strong></p> 	
+		<div class="alert alert-dismissable alert-success alerta">
+				<p><br><strong>Turno jugador: <%= ctrl.getPartida().getTurno().getNombre()  %></strong></p>
+					
 		</div>
 		
+		<% if (request.getAttribute("error3")!=null && !((String)request.getAttribute("error3")).isEmpty()){ %>
+			<div class="alert alert-dismissable alert-danger alerta" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+  
+			
+					<p><br><strong>Error: <%=request.getAttribute("error3") %></strong></p>
+				
+			</div>
+		<%} %>  
+		
+		<% if (request.getAttribute("error")!=null && !((String)request.getAttribute("error")).isEmpty()){ %>
+			<div class="alert alert-dismissable alert-danger alerta" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+  
+			
+					<p><br><strong>Error: <%=request.getAttribute("error") %></strong></p>
+				
+			</div>
+		<%} %>  
 
+		<% if (request.getAttribute("evasion")!=null && !((String)request.getAttribute("evasion")).isEmpty()){ %>
+			<div class="alert alert-dismissable alert-info alerta" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+  
+			
+					<p><br><strong>Estado de ataque: <%=request.getAttribute("evasion") %></strong></p>
+				
+			</div>
+		<%} %>  
+		
 		<div class="row marketing">
 			<!-- Columna Jugador 1 -->
 	    	<div class="col-xs-6 divide">
@@ -67,8 +103,8 @@
 		        <div class="row">
 		        	<div class="col-md-6">
 		        		<form class="form-signin" name="ataque" action="Atacar" method="post">
-		        			<label for="text" class="sr-only">Pts. Ataque</label>
-			        		<input name="PtsAtaquePersonaje1" type="text" id="inputPtsAtaquePersonaje1" class="form-control" placeholder="Pts. Ataque" required autofocus>
+		        			<label for="number" class="sr-only">Pts. Ataque</label>
+			        		<input name="PtsAtaquePersonaje1" type="number" id="inputPtsAtaquePersonaje1" class="form-control" placeholder="Pts. Ataque" required autofocus>
 					        <button type="submit" class="btn btn-default btn-block">Atacar</button>
 		        		</form>
 		        	</div>
@@ -101,8 +137,8 @@
 		        <div class="row">
 		        	<div class="col-md-6">
 		        		<form class="form-signin" name="ataque" action="Atacar" method="post">
-		        			<label for="text" class="sr-only">Pts. Ataque</label>
-			        		<input name="PtsAtaquePersonaje1" type="text" id="inputPtsAtaquePersonaje1" class="form-control" placeholder="Pts. Ataque" required autofocus>
+		        			<label for="number" class="sr-only">Pts. Ataque</label>
+			        		<input name="PtsAtaquePersonaje2" type="number" id="inputPtsAtaquePersonaje2" class="form-control" placeholder="Pts. Ataque" required autofocus>
 					        <button type="submit" class="btn btn-default btn-block">Atacar</button>
 		        		</form>
 		        	</div>
