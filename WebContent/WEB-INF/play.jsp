@@ -27,6 +27,7 @@
 	
 	    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	    <script src="js/ie-emulation-modes-warning.js"></script>
+	    
 	</head>
 	
 	<body class="fondo">
@@ -94,9 +95,11 @@
 		        <div class="row">
 			        <div class="col-xs-6">
 			        	<p><strong>Vida:</strong> <%= p1.getVidaActual() %></p>
+			        	<progress class="progress progress-info" role="progressbar" value="<%= p1.getVidaActual() %>" max="<%= p1.getVida() %>" style="width: 60%;"></progress>
 			        </div>
 			        <div class="col-xs-6">
 			        	<p><strong>Energía:</strong> <%= p1.getEnergiaActual() %></p>
+			        	<progress class="progress progress-warning" role="progressbar" value="<%= p1.getEnergiaActual() %>" max="<%= p1.getEnergia() %>" style="width: 60%;"></progress>
 			        </div>
 		        </div>
 		        
@@ -128,9 +131,11 @@
 		         <div class="row">
 			        <div class="col-xs-6">
 			        	<p><strong>Vida:</strong> <%= p2.getVidaActual() %></p>
+			        	<progress class="progress progress-bar-info" value="<%= p2.getVidaActual() %>" max="<%= p2.getVida() %>" style="width: 60%;"></progress>
 			        </div>
 			        <div class="col-xs-6">
 			        	<p><strong>Energía:</strong> <%= p2.getEnergiaActual() %></p>
+			        	<progress class="progress progress-bar-warning" value="<%= p2.getEnergiaActual() %>" max="<%= p2.getEnergia() %>" style="width: 60%;"></progress>
 			        </div>
 		        </div>
 		        
