@@ -25,8 +25,7 @@ import entidades.*;
 @WebServlet("/Start")
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Boolean per1;
-	Boolean per2;
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,47 +52,46 @@ public class Start extends HttpServlet {
 		
 		ControladorJuego ctrl = new ControladorJuego();
 		
-		DataPersonaje dp = new DataPersonaje();
-		
-		
-		
-		Personaje p1= new Personaje();
-		p1 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje1")));
-		Personaje p2= new Personaje();
-		p2 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje2")));
+
+		try{
+			Personaje p1= new Personaje();
+			p1 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje1")));
+			Personaje p2= new Personaje();
+			p2 = ctrl.buscarPersonaje(Integer.parseInt(request.getParameter("Personaje2")));
+			
+			ctrl.setJugador1(p1);
+			ctrl.setJugador2(p2);
+			
+			int op1 = Integer.parseInt(request.getParameter("op1"));
+			int op2 = Integer.parseInt(request.getParameter("op2"));
+			
+			if((p1.getIdPersonaje() != p2.getIdPersonaje()) && (op1 != op2) ){
 				
-		
-		ctrl.setJugador1(p1);
-		ctrl.setJugador2(p2);
-		
-		int op1 = Integer.parseInt(request.getParameter("op1"));
-		int op2 = Integer.parseInt(request.getParameter("op2"));
-		
-		if((p1.getIdPersonaje() != p2.getIdPersonaje()) && (op1 != op2) ){
+				ctrl.iniciarPartida();
+				
+				ctrl.sorteo(op1,op2);
 			
-			ctrl.iniciarPartida();
+				Partida partida = ctrl.getPartida();
+				
+				request.getSession().setAttribute("P1", p1);
+				request.getSession().setAttribute("P2", p2);
+				request.getSession().setAttribute("Ctrl", ctrl);
+				request.getSession().setAttribute("Partida", partida);
+				
+				request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+			}else{
+				String str= "No puede elegir el mismo personaje, ni el mismo número para el sorteo.";
+				request.setAttribute("error2", str);
+				request.getRequestDispatcher("iniciarJuego.jsp").forward(request, response);
 			
-			ctrl.sorteo(op1,op2);
-		
-			Partida partida = ctrl.getPartida();
-			
-			request.getSession().setAttribute("P1", p1);
-			request.getSession().setAttribute("P2", p2);
-			request.getSession().setAttribute("Ctrl", ctrl);
-			request.getSession().setAttribute("Partida", partida);
-			
-			request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
-		}else{
-			String str= "No elija el mismo personaje ni el mismo n�mero de sorteo";
+			}			
+		}catch(ApplicationException e){
+			String str= "Elija un personaje válido de la lista.";
 			request.setAttribute("error2", str);
 			request.getRequestDispatcher("iniciarJuego.jsp").forward(request, response);
-		
-		}			
-		
-	}
-		
+		}	
 	
-		
+	}
 }
 
 

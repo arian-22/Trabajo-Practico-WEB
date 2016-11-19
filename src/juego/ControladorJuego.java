@@ -12,7 +12,6 @@ public class ControladorJuego {
 	Personaje jugador2;
 	private Partida partida; 
 	
-	
 
 
 	public Personaje getJugador1() {
@@ -20,8 +19,9 @@ public class ControladorJuego {
 	}
 
 
-	public void setJugador1(Personaje jugador1) {
-		this.jugador1 = jugador1;
+	public void setJugador1(Personaje jugador1){
+			this.jugador1 = jugador1;
+		
 	}
 
 
@@ -30,11 +30,9 @@ public class ControladorJuego {
 	}
 
 
-	public void setJugador2(Personaje jugador2) {
-		this.jugador2 = jugador2;
+	public void setJugador2(Personaje jugador2){
+			this.jugador2 = jugador2;
 	}
-
-
 
 	
 	
@@ -55,7 +53,7 @@ public class ControladorJuego {
 	}
 
 
-	public Personaje buscarPersonaje(int idPersonaje) {
+	public Personaje buscarPersonaje(int idPersonaje) throws ApplicationException {
 		
 		Personaje p = new Personaje();
 		
@@ -63,7 +61,12 @@ public class ControladorJuego {
 		
 		p = dbPersonaje.getById(idPersonaje);
 		
-		return p;
+		if(p != null){
+			return p;
+		}
+		else{
+			throw (new ApplicationException());
+		}
 		
 	}
 	

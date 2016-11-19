@@ -111,7 +111,7 @@
 		        	
 		        	<div class="col-md-6">
 		        		 <form class="form-signin" name="defensa" action="Defensa" method="post">
-		        		 	<button type="submit" class="btn btn-block btn-default">Defender</button>
+		        		 	<button name="defensaJugador1" type="submit" class="btn btn-block btn-default">Defender</button>
 		        		 </form>
 		        	</div>
 		        </div>
@@ -145,7 +145,7 @@
 		        	
 		        	<div class="col-md-6">
 		        		 <form class="form-signin" name="defensa" action="Defensa" method="post">
-		        		 	<button type="submit" class="btn btn-block btn-default">Defender</button>
+		        		 	<button name="defensaJugador2" type="submit" class="btn btn-block btn-default">Defender</button>
 		        		 </form>
 		        	</div>
 		        </div>

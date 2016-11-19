@@ -10,7 +10,7 @@ public class ApplicationException extends Exception{
 	
 	
 	public String errorPuntosDeAtaque(){
-		return "Ingrese un valor mayor a cero y menor o igual a la Energía";
+		return "Ingrese un valor mayor a cero y menor o igual a la EnergÃ­a";
 	}
 	
 

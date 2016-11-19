@@ -183,38 +183,4 @@ public Boolean getByNombre(String nombre){
 		return p;
 	}
 	
-public Boolean getByIdPer(int idPersonaje){
-	
-	PreparedStatement stmt = null;
-	ResultSet rs = null;
-	
-	Boolean p = false;
-	
-	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT idPersonaje FROM personajes WHERE idPersonaje like ?");
-		stmt.setInt(1, idPersonaje);
-		rs = stmt.executeQuery();
-		
-		if(rs!=null && rs.next()){
-			p = true;
-		}
-			
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}finally{
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			FactoryConexion.getInstancia().releaseConn();
-	}
-	
-	
-	return p;
-}	
-
 }

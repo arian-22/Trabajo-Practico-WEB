@@ -46,7 +46,8 @@
 	    			<span aria-hidden="true">&times;</span>
 	  			</button>
 	  
-				<p><br><strong>Resultado Final: <%=request.getAttribute("ganador") %></strong></p>
+				<p><br><strong>Ganador: <h2><%=request.getAttribute("ganador") %></h2></strong></p>
+				<p><br><strong>Seleccione los personajes nuevamente para continuar jugando</strong></p>
 					
 			</div>
 		<%} %> 
@@ -96,18 +97,18 @@
 	       	<div class = "col-lg-6">
 		       	<h3 class="form-signin-heading">Seleccionar su personaje</h3>
 		        <label for="inputPersonaje1" class="sr-only">Personaje 1</label>
-		        <input type="number" name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="ID Personaje 1" required="" type="">
+		        <input type="number" name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="ID Personaje 1" required="">
 		        <label for="inputPersonaje2" class="sr-only">Personaje 2</label>
-		        <input type="number" name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="ID Personaje 2" required="" type="">
+		        <input type="number" name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="ID Personaje 2" required="">
 		     </div> 
 		     
 		     <div class = "col-lg-6">
 		       <center>	<h4>Sorteo</h4>
 		       	<p>Ingrese un número del 1 al 5</p></center>
 		        <label for="inputPersonaje1" class="sr-only">Jugador 1</label>
-		        <input type="text" pattern="[1-5]" name="op1" id="inputOp1" class="form-control" placeholder="Jugador 1" required="" type="">
+		        <input type="text" pattern="[1-5]" name="op1" id="inputOp1" class="form-control" placeholder="Jugador 1" required="">
 		        <label for="inputOp2" class="sr-only">Jugador 2</label>
-		        <input type="text" pattern="[1-5]" name="op2" id="inputPersonaje2" class="form-control" placeholder="Jugador 2" required="" type="">
+		        <input type="text" pattern="[1-5]" name="op2" id="inputPersonaje2" class="form-control" placeholder="Jugador 2" required="">
 		     </div> 
 		       
 	        

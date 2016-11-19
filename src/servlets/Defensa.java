@@ -16,6 +16,7 @@ import juego.*;
 @WebServlet("/Defensa")
 public class Defensa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private int id;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,11 +43,27 @@ public class Defensa extends HttpServlet {
 		ControladorJuego ctrl = (ControladorJuego) request.getSession().getAttribute("Ctrl");
 		Partida partida = (Partida) request.getSession().getAttribute("Partida");
 		
-		partida.defender();
+		if( request.getParameter("defensaJugador1")!= null){
+			id = ctrl.getJugador1().getIdPersonaje();
+		}else{
+			if( request.getParameter("defensaJugador2")!= null){
+				id = ctrl.getJugador2().getIdPersonaje();
+			}
+		}
 		
-		ctrl.cambiarTurno();
+		if(partida.getTurno().getIdPersonaje() == id){
+			partida.defender();
 		
-		request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+			ctrl.cambiarTurno();
+		
+			request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		}else{
+			String str = "Turno del jugador "+partida.getTurno().getNombre();
+			
+			request.setAttribute("error3", str);
+			request.getRequestDispatcher("WEB-INF/play.jsp").forward(request, response);
+		}
+
 		
 		
 		
